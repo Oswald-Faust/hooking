@@ -1,0 +1,29 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Règle pour les documents utilisateurs
+    match /Users/{userId} {
+      // Autoriser la lecture si l'utilisateur est connecté
+      allow read: if request.auth != null;
+      
+      // Autoriser la création si l'utilisateur crée son propre document
+      allow create: if request.auth != null 
+        && request.auth.uid == userId;
+      
+      // Autoriser la mise à jour si l'utilisateur modifie son propre document
+      allow update: if request.auth != null 
+        && request.auth.uid == userId;
+
+      // Collections imbriquées
+      match /{document=**} {
+        allow read, write: if request.auth != null 
+          && request.auth.uid == userId;
+      }
+    }
+
+    // Règle par défaut : refuser tout accès non explicitement autorisé
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+} 
