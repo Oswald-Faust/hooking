@@ -17,7 +17,8 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   agora_rtc_engine: 6.3.2
-  agora_uikit: ^1.3.10
+  agora_uikit:
+    path: ./plugins/agora_uikit
   cached_network_image: ^3.2.3
   cloud_firestore: ^5.6.0
   cloud_functions: ^5.2.0
@@ -33,7 +34,8 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
-  flutter_callkit_incoming: ^2.0.4+1
+  flutter_callkit_incoming:
+    path: ./plugins/flutter_callkit_incoming
   flutter_flushbar: ^0.0.2
   flutter_google_places_hoc081098: ^2.0.0
   flutter_image_compress: ^2.2.0
@@ -72,6 +74,8 @@ dependencies:
   flutter_facebook_auth: ^6.0.4
   #flutter_facebook_auth: ^7.0.0
   google_sign_in: ^6.2.1
+  agora_rtm:
+    path: ./plugins/agora_rtm
 
 dev_dependencies:
   flutter_launcher_icons: ^0.14.2

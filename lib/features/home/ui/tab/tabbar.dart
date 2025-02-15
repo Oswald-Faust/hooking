@@ -458,67 +458,57 @@ class _TabbarState extends State<Tabbar> with WidgetsBindingObserver {
           print('HOME: $event');
         }
         switch (event!.event) {
-          case Event.actionCallIncoming:
+          case Event.ACTION_CALL_INCOMING:
             break;
-          case Event.actionCallStart:
+          case Event.ACTION_CALL_START:
             break;
-          case Event.actionCallAccept:
+          case Event.ACTION_CALL_ACCEPT:
             await checkAndNavigationCallingPage(
                 channelId: event.body['extra']['channelId'],
                 callType: event.body['extra']['callType'] ?? '');
-            FlutterCallkitIncoming.setCallConnected(event.body['id']);
             break;
-          case Event.actionCallDecline:
+          case Event.ACTION_CALL_DECLINE:
             await callRef
                 .doc(event.body['extra']['channelId'])
                 .update({'response': 'Decline'});
             await FlutterCallkitIncoming.endAllCalls();
-
-            debugPrint(
-                'decilne incoming dart------------------------------------');
-
+            debugPrint('decline incoming dart------------------------------------');
             break;
-          case Event.actionCallEnded:
+          case Event.ACTION_CALL_ENDED:
             debugPrint(
                 "call id from call ended state is ${event.body['extra']['channelId']}");
             try {
               await callRef
                   .doc(event.body['extra']['channelId'])
-                  .update({'response': 'Decline'});
+                  .update({'response': 'Call-Ended'});
               debugPrint('completed call------------------------------------');
             } catch (e) {
               await FlutterCallkitIncoming.endAllCalls();
               rethrow;
             }
-
             await FlutterCallkitIncoming.endCall(event.body['id']);
-
             break;
-          case Event.actionCallTimeout:
+          case Event.ACTION_CALL_TIMEOUT:
             await callRef
                 .doc(event.body['extra']['channelId'])
                 .update({'response': 'Not-answer'});
             await FlutterCallkitIncoming.endCall(event.body['id']);
             await FlutterCallkitIncoming.endAllCalls();
-
-            debugPrint(
-                'decilne incoming dart------------------------------------');
+            debugPrint('decline incoming dart------------------------------------');
             break;
-          case Event.actionCallCallback:
+          case Event.ACTION_CALL_CALLBACK:
             break;
-          case Event.actionCallToggleHold:
+          case Event.ACTION_CALL_TOGGLE_HOLD:
             break;
-          case Event.actionCallToggleMute:
+          case Event.ACTION_CALL_TOGGLE_MUTE:
             break;
-          case Event.actionCallToggleDmtf:
+          case Event.ACTION_CALL_TOGGLE_DMTF:
             break;
-          case Event.actionCallToggleGroup:
+          case Event.ACTION_CALL_TOGGLE_GROUP:
             break;
-          case Event.actionCallToggleAudioSession:
+          case Event.ACTION_CALL_TOGGLE_AUDIO_SESSION:
             break;
-          case Event.actionDidUpdateDevicePushTokenVoip:
-            break;
-          case Event.actionCallCustom:
+          case Event.ACTION_DID_UPDATE_DEVICE_PUSH_TOKEN_VOIP:
             break;
         }
         if (callback != null) {

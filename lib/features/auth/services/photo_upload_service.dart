@@ -7,7 +7,6 @@ import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:path/path.dart' as path;
 import 'package:uuid/uuid.dart';
 import 'package:image_picker/image_picker.dart';
-import 'dart:html' as html;
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class PhotoUploadService {

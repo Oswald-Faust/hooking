@@ -5,7 +5,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_callkit_incoming/entities/android_params.dart';
 import 'package:flutter_callkit_incoming/entities/call_kit_params.dart';
 import 'package:flutter_callkit_incoming/entities/ios_params.dart';
-import 'package:flutter_callkit_incoming/entities/notification_params.dart';
+// import 'package:flutter_callkit_incoming/entities/notification_params.dart';
 import 'package:flutter_callkit_incoming/flutter_callkit_incoming.dart';
 
 import '../common/constants/constants.dart';
@@ -31,12 +31,12 @@ class NotificationData {
       duration: 30000,
       textAccept: "Accept".tr().toString(),
       textDecline: "Decline".tr().toString(),
-      missedCallNotification: const NotificationParams(
-        showNotification: true,
-        isShowCallback: false,
-        subtitle: 'Missed call',
-        callbackText: 'Call back',
-      ),
+      //   missedCallNotification: const NotificationParams(
+      //     showNotification: true,
+      //     isShowCallback: false,
+      //     subtitle: 'Missed call',
+      //     callbackText: 'Call back',
+      //   ),
       extra: <String, dynamic>{
         'callType': callType,
         'channelId': channelId,
@@ -51,8 +51,7 @@ class NotificationData {
         backgroundColor: '#FF3A5A',
         actionColor: '#4CAF50',
       ),
-      ios: const IOSParams(
-        configureAudioSession: false,
+      ios: IOSParams(
         iconName: 'CallKitLogo',
         handleType: 'number',
         supportsVideo: true,
@@ -66,7 +65,7 @@ class NotificationData {
         supportsHolding: true,
         supportsGrouping: false,
         supportsUngrouping: false,
-        ringtonePath: 'Ringtone.caf ',
+        ringtonePath: 'Ringtone.caf',
       ),
     );
 

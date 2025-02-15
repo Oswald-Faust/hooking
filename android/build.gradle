@@ -6,14 +6,10 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.2.2'
+        classpath 'com.android.tools.build:gradle:8.2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.google.gms:google-services:4.4.1'
     }
-}
-
-plugins {
-    id 'dev.flutter.flutter-plugin-loader' version '1.0.0'
 }
 
 allprojects {
