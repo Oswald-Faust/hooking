@@ -4,15 +4,20 @@
     
    <application
         android:usesCleartextTraffic="true"
-        android:label="hookup4u"
+        android:label="Solo Parent"
         android:name="${applicationName}"
-        android:icon="@mipmap/launcher_icon">
+        android:icon="@mipmap/launcher_icon"
+        android:allowBackup="true"
+        android:fullBackupContent="true">
              <meta-data android:name="com.facebook.sdk.ApplicationId"
 
     android:value="@string/facebook_app_id"/>
     <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
     <meta-data android:name="com.google.android.geo.API_KEY"
                android:value="AIzaSyCGubvO4VcS91zXhM2lHUpDFiiw6vY6u40"/>
+    <meta-data android:name="firebase_messaging_auto_init_enabled" android:value="true" />
+    <meta-data android:name="firebase_analytics_collection_enabled" android:value="true" />
+    <meta-data android:name="com.google.firebase.messaging.default_notification_channel_id" android:value="default_notification_channel_id"/>
 <activity android:name="com.facebook.FacebookActivity"
     android:configChanges=
             "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
@@ -83,12 +88,6 @@
             android:name="flutterEmbedding"
             android:value="2" />
         <meta-data
-            android:name="flutterEmbedding"
-            android:value="2" />
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_channel_id"
-            android:value="default_notification_channel_id"/>
-        <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-xxxxxxxxxxxxxxxxxxxxxx"/>
              <!-- Google Map Key -->
@@ -111,6 +110,9 @@
 <uses-permission android:name="android.permission.CAMERA" />
 <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30" />
+<uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30" />
 <queries>
     <intent>
         <action android:name="android.intent.action.VIEW" />
@@ -120,5 +122,4 @@
 </queries>
 
 <!-- The Agora SDK requires Bluetooth permissions in case users are using Bluetooth devices.-->
-<uses-permission android:name="android.permission.BLUETOOTH" />
 </manifest>

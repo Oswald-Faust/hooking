@@ -1,3 +1,9 @@
+buildscript {
+    dependencies {
+        classpath 'com.android.tools:r8:8.2.47'
+    }
+}
+
 plugins {
     id "com.android.application"
     id "kotlin-android"
@@ -40,12 +46,22 @@ android {
     ndkVersion flutter.ndkVersion
 
     compileOptions {
+        coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
 
     kotlinOptions {
         jvmTarget = '17'
+        freeCompilerArgs += [
+            '-Xjvm-default=all',
+            '-Xuse-ir'
+        ]
+    }
+
+    buildFeatures {
+        buildConfig = true
+        viewBinding true
     }
 
     sourceSets {
@@ -56,9 +72,17 @@ android {
         applicationId "com.soloparent.app"
         minSdkVersion 23
         targetSdkVersion flutter.targetSdkVersion
-        multiDexEnabled true 
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        multiDexEnabled true
+        
+        // Configurations pour Firebase
+        resValue "string", "default_notification_channel_id", "default_notification_channel_id"
+        resValue "string", "default_notification_channel_name", "Default Channel"
+        
+        ndk {
+            abiFilters "armeabi-v7a", "arm64-v8a", "x86_64"
+        }
     }
 
     signingConfigs {
@@ -74,8 +98,31 @@ android {
         release {
             signingConfig signingConfigs.release
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            
+            // Configurations pour le mode release
+            buildConfigField "boolean", "DEBUG", "false"
+            resValue "string", "app_name", "Solo Parent"
         }
+        
+        debug {
+            // Configurations pour le mode debug
+            buildConfigField "boolean", "DEBUG", "true"
+            resValue "string", "app_name", "Solo Parent Debug"
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude("META-INF/*.kotlin_module")
     }
 }
 
@@ -85,16 +132,23 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13.2'
     implementation platform('com.google.firebase:firebase-bom:32.7.4')
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    androidTestImplementation 'androidx.test:runner:1.5.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.facebook.android:facebook-android-sdk:[8,9)'
     implementation 'com.google.firebase:firebase-messaging:23.4.1'
-    implementation 'com.android.support:multidex:1.0.3'
-    implementation("com.google.firebase:firebase-auth")
-
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.android.play:core:1.10.3'
+    implementation 'com.google.android.play:core-ktx:1.8.1'
+    implementation 'com.android.tools:desugar_jdk_libs:2.0.4'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'
+    
+    // Ajout des dépendances pour la gestion des images
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
 }
 
 configurations.all {
@@ -104,5 +158,8 @@ configurations.all {
                 useVersion("1.8.0")
             }
         }
+        force 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0'
+        force 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0'
+        force 'org.jetbrains.kotlin:kotlin-stdlib:1.8.0'
     }
 }

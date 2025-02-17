@@ -33,11 +33,11 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'YOUR-ANDROID-API-KEY',
-    appId: 'YOUR-ANDROID-APP-ID',
-    messagingSenderId: 'YOUR-SENDER-ID',
-    projectId: 'YOUR-PROJECT-ID',
-    storageBucket: 'YOUR-STORAGE-BUCKET',
+    apiKey: 'AIzaSyDf2tFDkkZ6I4GMx8Dplujb3yGglP02AXE',
+    appId: '1:192468342798:android:e063f16e97a4410ece445f',
+    messagingSenderId: '192468342798',
+    projectId: 'hookup4u-6be59',
+    storageBucket: 'hookup4u-6be59.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
