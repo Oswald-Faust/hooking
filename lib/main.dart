@@ -8,7 +8,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
+// import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hookup4u2/common/providers/user_provider.dart';
 import 'package:hookup4u2/common/routes/route_name.dart';
 import 'package:hookup4u2/common/routes/router.dart';
@@ -40,22 +40,23 @@ Future<void> main() async {
   try {
     WidgetsFlutterBinding.ensureInitialized();
     await EasyLocalization.ensureInitialized();
-    
+
     log('🌟 Starting app initialization');
-    
+
     // Initialiser Firebase en premier
-    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+    await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform);
     log('🔥 Firebase initialized');
-    
+
     // Initialiser les services dans l'ordre
     if (!kIsWeb) {
-      await MobileAds.instance.initialize();
-      log('📱 Mobile Ads initialized');
+      // await MobileAds.instance.initialize();
+      // log('📱 Mobile Ads initialized');
     }
-    
+
     await NotificationService().initialize();
     log('🔔 Notifications initialized');
-    
+
     // Initialiser le service d'achat
     try {
       await PurchaseService().initialize();
@@ -63,7 +64,7 @@ Future<void> main() async {
     } catch (e) {
       log('⚠️ Error initializing purchase service: $e');
     }
-    
+
     // Initialiser les services de manière séquentielle avec gestion d'erreur
     try {
       await InitializationService().initialize();
@@ -105,7 +106,8 @@ Future<void> main() async {
               BlocProvider(create: (_) => AppleLoginBloc()),
               BlocProvider(create: (_) => GoogleLoginBloc()),
               BlocProvider(create: (_) => ExploreBloc()),
-              BlocProvider(create: (_) => LoginBloc(authService: AuthService())),
+              BlocProvider(
+                  create: (_) => LoginBloc(authService: AuthService())),
               BlocProvider(
                 create: (context) => RegistrationBloc(
                   phoneAuthRepository: PhoneAuthRepository(),

@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
+//import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hookup4u2/features/user/ui/widgets/user_info.dart';
 import 'package:provider/provider.dart';
 import 'package:swipable_stack/swipable_stack.dart';
@@ -42,7 +42,7 @@ class UsersList extends StatefulWidget {
 
 class UsersListState extends State<UsersList> with WidgetsBindingObserver {
   //Ads _ads = new Ads();
-  InterstitialAd? interstitialAd;
+  // InterstitialAd? interstitialAd;
   bool isInterstitialAdReady = false;
 
   @override
@@ -55,18 +55,18 @@ class UsersListState extends State<UsersList> with WidgetsBindingObserver {
       }
     });
     if (widget.currentUser.isPremium == false) {
-      InterstitialAd.load(
-          adUnitId: AdHelper.interstitialAdUnitId,
-          request: const AdRequest(),
-          adLoadCallback: InterstitialAdLoadCallback(
-            onAdLoaded: (InterstitialAd ad) {
-              // Keep a reference to the ad so you can show it later.
-              interstitialAd = ad;
-            },
-            onAdFailedToLoad: (LoadAdError error) {
-              debugPrint('InterstitialAd failed to load: $error');
-            },
-          ));
+      // InterstitialAd.load(
+      //     adUnitId: AdHelper.interstitialAdUnitId,
+      //     request: const AdRequest(),
+      //     adLoadCallback: InterstitialAdLoadCallback(
+      //       onAdLoaded: (InterstitialAd ad) {
+      //         // Keep a reference to the ad so you can show it later.
+      //         interstitialAd = ad;
+      //       },
+      //       onAdFailedToLoad: (LoadAdError error) {
+      //         debugPrint('InterstitialAd failed to load: $error');
+      //       },
+      //     ));
     }
 
     super.initState();
@@ -74,7 +74,7 @@ class UsersListState extends State<UsersList> with WidgetsBindingObserver {
 
   @override
   void dispose() {
-    interstitialAd?.dispose();
+    // interstitialAd?.dispose();
     super.dispose();
   }
 
@@ -227,10 +227,10 @@ class UsersListState extends State<UsersList> with WidgetsBindingObserver {
                               trailing: IconButton(
                                   onPressed: () {
                                     if (widget.currentUser.isPremium == false) {
-                                      LoadAds.loadInterstitialAd(interstitialAd,
-                                          isInterstitialAdReady);
+                                      // LoadAds.loadInterstitialAd(interstitialAd,
+                                      //     isInterstitialAdReady);
 
-                                      interstitialAd?.show();
+                                      // interstitialAd?.show();
                                     }
 
                                     showDialog(

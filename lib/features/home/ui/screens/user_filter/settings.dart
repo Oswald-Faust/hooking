@@ -5,7 +5,7 @@ import 'dart:developer';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
+//import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hookup4u2/common/routes/route_name.dart';
 import 'package:hookup4u2/common/widets/text_button.dart';
 import 'package:hookup4u2/features/ads/google_ads.dart';
@@ -45,13 +45,13 @@ class SettingPage extends StatefulWidget {
 
 class SettingPageState extends State<SettingPage> {
   Map<String, dynamic> changeValues = {};
-  final BannerAd myBanner = BannerAd(
-    adUnitId: AdHelper.bannerAdUnitId,
-    size: AdSize.banner,
-    request: const AdRequest(),
-    listener: const BannerAdListener(),
-  );
-  AdWidget? adWidget;
+  // final BannerAd myBanner = BannerAd(
+  //   adUnitId: AdHelper.bannerAdUnitId,
+  //   size: AdSize.banner,
+  //   request: const AdRequest(),
+  //   listener: const BannerAdListener(),
+  // );
+  // AdWidget? adWidget;
 
   Future<bool> _onWillPop(BuildContext context) async {
     final currentstate = BlocProvider.of<UserfilterBloc>(context).state;
@@ -115,8 +115,8 @@ class SettingPageState extends State<SettingPage> {
   void initState() {
     super.initState();
     if (widget.currentUser.isPremium == false) {
-      myBanner.load();
-      adWidget = AdWidget(ad: myBanner);
+      // myBanner.load();
+      // adWidget = AdWidget(ad: myBanner);
     }
 
     freeR = widget.items['free_radius'] != null
@@ -137,7 +137,7 @@ class SettingPageState extends State<SettingPage> {
 
   @override
   void dispose() {
-    myBanner.dispose();
+    // myBanner.dispose();
     super.dispose();
   }
 
@@ -232,9 +232,9 @@ class SettingPageState extends State<SettingPage> {
                       child: Center(
                         child: Container(
                           alignment: Alignment.center,
-                          width: myBanner.size.width.toDouble(),
-                          height: myBanner.size.height.toDouble(),
-                          child: adWidget ?? const SizedBox(),
+                          // width: myBanner.size.width.toDouble(),
+                          // height: myBanner.size.height.toDouble(),
+                          // child: adWidget ?? const SizedBox(),
                         ),
                       ),
                     ),

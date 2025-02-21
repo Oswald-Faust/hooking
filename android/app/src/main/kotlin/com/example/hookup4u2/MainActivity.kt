@@ -1,4 +1,4 @@
-package com.deligence.hookup4u2
+package com.soloparent.app
 
 import io.flutter.embedding.android.FlutterActivity
 
