@@ -7,7 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
+//import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hookup4u2/common/utlis/custom_toast.dart';
 import 'package:hookup4u2/common/widets/custom_snackbar.dart';
 import 'package:hookup4u2/features/ads/google_ads.dart';
@@ -39,7 +39,7 @@ class ChatPage extends StatefulWidget {
 }
 
 class ChatPageState extends State<ChatPage> {
-  InterstitialAd? interstitialAd;
+  // InterstitialAd? interstitialAd;
   bool isInterstitialAdReady = true;
   bool isBlocked = false;
   Timer? debouncer;
@@ -53,29 +53,29 @@ class ChatPageState extends State<ChatPage> {
   @override
   void initState() {
     if (widget.sender.isPremium == false) {
-      InterstitialAd.load(
-          adUnitId: AdHelper.interstitialAdUnitId,
-          request: const AdRequest(),
-          adLoadCallback: InterstitialAdLoadCallback(
-            onAdLoaded: (InterstitialAd ad) {
-              // Keep a reference to the ad so you can show it later.
-              interstitialAd = ad;
-            },
-            onAdFailedToLoad: (LoadAdError error) {
-              log('InterstitialAd failed to load: $error');
-            },
-          ));
+      // InterstitialAd.load(
+      //     adUnitId: AdHelper.interstitialAdUnitId,
+      //     request: const AdRequest(),
+      //     adLoadCallback: InterstitialAdLoadCallback(
+      //       onAdLoaded: (InterstitialAd ad) {
+      //         // Keep a reference to the ad so you can show it later.
+      //         interstitialAd = ad;
+      //       },
+      //       onAdFailedToLoad: (LoadAdError error) {
+      //         log('InterstitialAd failed to load: $error');
+      //       },
+      //     ));
 
-      LoadAds.loadInterstitialAd(interstitialAd, isInterstitialAdReady);
+      // LoadAds.loadInterstitialAd(interstitialAd, isInterstitialAdReady);
       Future.delayed(const Duration(milliseconds: 2000), () {
 // Here you can write your code
 
         if (mounted) {
           (() {
             // Here you can write your code for open new view
-            if (isInterstitialAdReady) {
-              interstitialAd?.show();
-            }
+            // if (isInterstitialAdReady) {
+            //   interstitialAd?.show();
+            // }
           });
         }
       });
@@ -90,7 +90,7 @@ class ChatPageState extends State<ChatPage> {
 
   @override
   void dispose() {
-    interstitialAd?.dispose();
+    // interstitialAd?.dispose();
     debouncer?.cancel();
     super.dispose();
   }

@@ -7,13 +7,15 @@ class ChatModel {
   String type;
   bool isRead;
   Timestamp? timestamp;
-  ChatModel(
-      {required this.senderId,
-      required this.receiverId,
-      required this.text,
-      required this.type,
-      required this.isRead,
-      required this.timestamp});
+  ChatModel({
+    required this.senderId,
+    required this.receiverId,
+    required this.text,
+    required this.type,
+    required this.isRead,
+    required this.timestamp,
+  });
+
   factory ChatModel.from(doc) {
     return ChatModel(
       senderId: doc['sender_id'],

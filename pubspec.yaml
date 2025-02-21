@@ -38,12 +38,12 @@ dependencies:
     path: ./plugins/flutter_callkit_incoming
   flutter_flushbar: ^0.0.2
   flutter_google_places_hoc081098: ^2.0.0
-  flutter_image_compress: ^2.2.0
+  flutter_image_compress: ^2.4.0
   flutter_swiper_null_safety: ^1.0.2
   fluttertoast: ^8.2.1
   font_awesome_flutter: ^10.4.0
   google_maps_flutter: ^2.6.0
-  google_mobile_ads: ^5.0.0
+  # google_mobile_ads: ^5.0.0
   http: ^1.2.2
   image: ^4.0.16
   #image_cropper: ^4.0.1
@@ -95,7 +95,6 @@ flutter_icons:
 flutter_native_splash:
   color: "ff3a5a"
   image: "asset/soloparent.png"
-
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

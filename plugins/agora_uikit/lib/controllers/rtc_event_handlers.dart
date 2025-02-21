@@ -62,7 +62,8 @@ Future<RtcEngineEventHandler> rtcEngineEventHandler(
     agoraEventHandlers.onFirstLocalVideoFrame
         ?.call(source, width, height, elapsed);
   }, onFirstLocalVideoFramePublished: (source, elapsed) {
-    agoraEventHandlers.onFirstLocalVideoFramePublished?.call(source, elapsed);
+    agoraEventHandlers.onFirstLocalVideoFramePublished
+        ?.call(source as VideoSourceType, elapsed);
   }, onFirstRemoteAudioDecoded: (connection, uid, elapsed) {
     agoraEventHandlers.onFirstRemoteAudioDecoded
         ?.call(connection, uid, elapsed);
@@ -107,7 +108,7 @@ Future<RtcEngineEventHandler> rtcEngineEventHandler(
   }, onCameraExposureAreaChanged: (x, y, width, height) {
     agoraEventHandlers.onCameraExposureAreaChanged?.call(x, y, width, height);
   }, onFacePositionChanged:
-      (imageWidth, imageHeight, vecRectangle, vecDistance, numFaces) {
+          (imageWidth, imageHeight, vecRectangle, vecDistance, numFaces) {
     agoraEventHandlers.onFacePositionChanged
         ?.call(imageWidth, imageHeight, vecRectangle, vecDistance, numFaces);
   }, onRtcStats: (connection, stats) {
@@ -117,7 +118,8 @@ Future<RtcEngineEventHandler> rtcEngineEventHandler(
   }, onLastmileProbeResult: (result) {
     agoraEventHandlers.onLastmileProbeResult?.call(result);
   }, onLocalVideoStats: (source, stats) {
-    agoraEventHandlers.onLocalVideoStats?.call(source, stats);
+    agoraEventHandlers.onLocalVideoStats
+        ?.call(source as VideoSourceType, stats);
   }, onLocalAudioStats: (connection, stats) {
     agoraEventHandlers.onLocalAudioStats?.call(connection, stats);
   }, onRemoteVideoStats: (connection, stats) {
@@ -140,25 +142,25 @@ Future<RtcEngineEventHandler> rtcEngineEventHandler(
     agoraEventHandlers.onStreamMessage
         ?.call(connection, remoteUid, streamId, data, length, sentTs);
   }, onStreamMessageError:
-      (connection, remoteUid, streamId, code, missed, cached) {
+          (connection, remoteUid, streamId, code, missed, cached) {
     agoraEventHandlers.onStreamMessageError
         ?.call(connection, remoteUid, streamId, code, missed, cached);
   }, onChannelMediaRelayStateChanged: (state, code) {
     agoraEventHandlers.onChannelMediaRelayStateChanged?.call(state, code);
   }, onAudioPublishStateChanged:
-      (channel, oldState, newState, elapseSinceLastState) {
+          (channel, oldState, newState, elapseSinceLastState) {
     agoraEventHandlers.onAudioPublishStateChanged
         ?.call(channel, oldState, newState, elapseSinceLastState);
   }, onVideoPublishStateChanged:
-      (source, channel, oldState, newState, elapseSinceLastState) {
+          (source, channel, oldState, newState, elapseSinceLastState) {
     agoraEventHandlers.onVideoPublishStateChanged
         ?.call(source, channel, oldState, newState, elapseSinceLastState);
   }, onAudioSubscribeStateChanged:
-      (channel, uid, oldState, newState, elapseSinceLastState) {
+          (channel, uid, oldState, newState, elapseSinceLastState) {
     agoraEventHandlers.onAudioSubscribeStateChanged
         ?.call(channel, uid, oldState, newState, elapseSinceLastState);
   }, onVideoSubscribeStateChanged:
-      (channel, uid, oldState, newState, elapseSinceLastState) {
+          (channel, uid, oldState, newState, elapseSinceLastState) {
     agoraEventHandlers.onVideoSubscribeStateChanged
         ?.call(channel, uid, oldState, newState, elapseSinceLastState);
   }, onUploadLogResult: (connection, requestId, success, reason) {
@@ -302,25 +304,30 @@ Future<RtcEngineEventHandler> rtcEngineEventHandler(
     agoraEventHandlers.onCameraReady?.call();
   }, onEncryptionError: (connection, errorType) {
     agoraEventHandlers.onEncryptionError?.call(connection, errorType);
-  }, onExtensionError: (provider, extension, error, message) {
-    agoraEventHandlers.onExtensionError
-        ?.call(provider, extension, error, message);
-  }, onExtensionEvent: (provider, extension, key, value) {
-    agoraEventHandlers.onExtensionEvent?.call(provider, extension, key, value);
-  }, onExtensionStarted: (provider, extension) {
-    agoraEventHandlers.onExtensionStarted?.call(provider, extension);
-  }, onExtensionStopped: (provider, extension) {
-    agoraEventHandlers.onExtensionStopped?.call(provider, extension);
-  }, onIntraRequestReceived: (connection) {
+  },
+      // onExtensionError: (provider, extension, error, message) {
+      //   agoraEventHandlers.onExtensionError
+      //       ?.call(provider, extension, error, message);
+      // },
+      // onExtensionEvent: (provider, extension, key, value) {
+      //   agoraEventHandlers.onExtensionEvent?.call(provider, extension, key, value);
+      // },
+      // onExtensionStarted: (provider, extension) {
+      //   agoraEventHandlers.onExtensionStarted?.call(provider, extension);
+      // },
+      // onExtensionStopped: (provider, extension) {
+      //   agoraEventHandlers.onExtensionStopped?.call(provider, extension);
+      // },
+      onIntraRequestReceived: (connection) {
     agoraEventHandlers.onIntraRequestReceived?.call(connection);
   }, onPermissionError: (permissionType) {
     agoraEventHandlers.onPermissionError?.call(permissionType);
   }, onRemoteAudioTransportStats:
-      (connection, remoteUid, delay, lost, rxKBitRate) {
+          (connection, remoteUid, delay, lost, rxKBitRate) {
     agoraEventHandlers.onRemoteAudioTransportStats
         ?.call(connection, remoteUid, delay, lost, rxKBitRate);
   }, onRemoteVideoTransportStats:
-      (connection, remoteUid, delay, lost, rxKBitRate) {
+          (connection, remoteUid, delay, lost, rxKBitRate) {
     agoraEventHandlers.onRemoteVideoTransportStats
         ?.call(connection, remoteUid, delay, lost, rxKBitRate);
   }, onRhythmPlayerStateChanged: (state, errorCode) {
