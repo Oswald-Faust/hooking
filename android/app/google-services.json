@@ -7,21 +7,12 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:192468342798:android:e063f16e97a4410ece445f",
+        "mobilesdk_app_id": "1:192468342798:android:52361d732c264974ce445f",
         "android_client_info": {
           "package_name": "com.soloparent.app"
         }
-
       },
       "oauth_client": [
-        {
-          "client_id": "192468342798-iprs8pp3neij56rqdg2q86d085gaqbbc.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.soloparent.app",
-            "certificate_hash": "dc27aee5ad5c6befa6857cf8602d85c1318184cf"
-          }
-        },
         {
           "client_id": "192468342798-8f3rdolhqbs7v35kbte5ov1ucemu3dms.apps.googleusercontent.com",
           "client_type": 3
@@ -38,6 +29,13 @@
             {
               "client_id": "192468342798-8f3rdolhqbs7v35kbte5ov1ucemu3dms.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "192468342798-h278705ijf40ca6ln9mj5bhm9lduogmh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.hookingSave"
+              }
             }
           ]
         }
