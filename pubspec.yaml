@@ -16,7 +16,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  agora_rtc_engine: 6.3.2
+  agora_rtc_engine: 6.5.0
   agora_uikit:
     path: ./plugins/agora_uikit
   cached_network_image: ^3.2.3
